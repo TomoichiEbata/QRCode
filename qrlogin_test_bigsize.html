@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>basic example</title>
+</head>
+<body>
+<script src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.qrcode.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+
+<center>
+  <p>QR Login Page</p>
+</center>
+
+<script>
+  function OnButtonClick() {
+	  target = document.getElementById("output");
+	  target.innerText = document.forms.id_form1.id_textBox1.value;
+	  target.innerText2 = document.forms.id_form1.id_textBox2.value;
+	  
+	  //jQuery('#qrcode').qrcode("this plugin is great");
+	  jQuery('#qrcodeTable').qrcode(
+		  {
+			  width:500,//横幅
+			  height:500,//高さ			  
+
+			  //render	: "table",  ←これがあると、読取できないコードが生成される
+			  // text	: "http://jetienne.com"
+			  text: "http://localhost:8080/?abc=" + target.innerText + "&def=" +target.innerText2
+		  }
+	  );
+	  //target.innerHTML = "http://localhost:8080/?abc=" + target.innerText + "&def=" +target.innerText2;	  
+  }
+</script>
+
+<script>
+  function OnButtonClick2() {
+	  target = document.getElementById("output2");
+
+	  // 現在表示されているページをリロードする
+	  location.reload();
+  }
+</script>
+
+
+<form name="form1" id="id_form1" action="">
+
+  <hr/>  
+  <center>  
+	<input name="textBox1" id="id_textBox1" type="text" value="passenger" />
+	<input name="textBox2" id="id_textBox2" type="text" value="password" />
+	<input type="button" value="Exec" onclick="OnButtonClick();" />
+  </center>  
+  
+</form>
+
+<hr/>
+
+<div id="output"></div>
+
+<center>
+  <div id="qrcodeTable"></div>
+</center>
+
+  <center>  
+	<input type="button" value="Reset" onclick="OnButtonClick2();" />
+  </center>  
+
+<div id="output2"></div>
+
+
+</body>
+</html>
+
+
